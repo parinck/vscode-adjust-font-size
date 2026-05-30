@@ -1,0 +1,98 @@
+{
+  "name": "vscode-font-size-pair-adjuster",
+  "displayName": "Font Size Pair Adjuster",
+  "description": "Keep editor and Markdown preview font sizes in sync from the status bar.",
+  "version": "0.0.1",
+  "publisher": "parin",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/parinck/vscode-adjust-font-size.git"
+  },
+  "bugs": {
+    "url": "https://github.com/parinck/vscode-adjust-font-size/issues"
+  },
+  "homepage": "https://github.com/parinck/vscode-adjust-font-size#readme",
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#1E293B",
+    "theme": "dark"
+  },
+  "pricing": "Free",
+  "keywords": [
+    "font-size",
+    "markdown",
+    "preview",
+    "statusbar",
+    "accessibility"
+  ],
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "extensionKind": [
+    "ui"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "fontSizePairAdjuster.increase",
+        "title": "Font Size Pair: Increase"
+      },
+      {
+        "command": "fontSizePairAdjuster.decrease",
+        "title": "Font Size Pair: Decrease"
+      },
+      {
+        "command": "fontSizePairAdjuster.set",
+        "title": "Font Size Pair: Set"
+      }
+    ],
+    "configuration": {
+      "title": "Font Size Pair Adjuster",
+      "properties": {
+        "fontSizePairAdjuster.step": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0.5,
+          "description": "Amount to add or subtract from both font sizes."
+        },
+        "fontSizePairAdjuster.minimum": {
+          "type": "number",
+          "default": 1,
+          "minimum": 1,
+          "description": "Minimum allowed font size when decreasing."
+        },
+        "fontSizePairAdjuster.maximum": {
+          "type": "number",
+          "default": 72,
+          "minimum": 1,
+          "description": "Maximum allowed font size when increasing or setting a value."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "check": "node --check extension.js && node --check fontSizeLogic.js && node --check test/fontSizeLogic.test.js",
+    "scan:publish": "node scripts/check-publish-readiness.js",
+    "vscode:prepublish": "npm run check && npm run scan:publish && npm test",
+    "package": "vsce package",
+    "publish:marketplace": "vsce publish",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.9.1"
+  }
+}

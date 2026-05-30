@@ -1,0 +1,15 @@
+.DS_Store
+.env
+.env.*
+.git/**
+.gitignore
+.vscode/**
+node_modules/**
+npm-debug.log*
+package-lock.json
+scripts/**
+test/**
+*.test.js
+*.vsix
+dist/**
+coverage/**
