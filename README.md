@@ -1,6 +1,6 @@
 # Font Size Pair Adjuster
 
-Keep VS Code's editor font size and Markdown preview font size in sync from the status bar or command palette.
+Keep VS Code's editor font size and Markdown preview font size in sync from the status bar or command palette. Markdown previews also get zoom controls for rendered diagrams.
 
 This extension adds lightweight status bar controls and command palette commands for updating these settings together:
 
@@ -18,6 +18,7 @@ This extension adds lightweight status bar controls and command palette commands
 - Set both font sizes to one explicit value.
 - See the current editor and Markdown preview sizes in the status bar.
 - Configure step size, minimum size, and maximum size.
+- Zoom, pan, reset, and pop out Mermaid/SVG diagrams in Markdown preview.
 
 ## Usage
 
@@ -32,6 +33,17 @@ You can also run these commands from the command palette:
 - `Font Size Pair: Increase`
 - `Font Size Pair: Decrease`
 - `Font Size Pair: Set`
+
+### Markdown Diagram Preview
+
+Open any Markdown preview that contains rendered Mermaid diagrams or SVG images. Diagram controls appear automatically in the upper right of each detected diagram:
+
+- `-` zooms out.
+- `+` zooms in.
+- `1:1` resets zoom.
+- `[]` opens an in-preview diagram viewer.
+
+Drag inside a zoomed diagram to pan around it.
 
 ## Settings
 
@@ -124,9 +136,9 @@ Issues: https://github.com/parinck/vscode-adjust-font-size/issues
 
 ## Privacy And Security
 
-This extension has no runtime dependencies. It does not use network access, filesystem access, shell execution, webviews, telemetry, secrets, or environment variables.
+This extension has no runtime dependencies. It does not use network access, filesystem access, shell execution, telemetry, secrets, or environment variables.
 
-The extension only updates these user settings when you run one of its commands or click one of its status bar controls:
+The status bar commands only update these user settings when you run one of its commands or click one of its status bar controls:
 
 ```json
 {
@@ -135,4 +147,6 @@ The extension only updates these user settings when you run one of its commands 
 }
 ```
 
-The extension declares support for trusted, untrusted, and virtual workspaces because it does not inspect workspace files or execute workspace code.
+The extension also contributes a local Markdown preview script and stylesheet to add diagram controls inside VS Code's Markdown preview. The preview script only inspects and wraps diagram elements already rendered in the preview document.
+
+The extension declares support for trusted, untrusted, and virtual workspaces because it does not inspect workspace files, execute workspace code, or load remote resources.

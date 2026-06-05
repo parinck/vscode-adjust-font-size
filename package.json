@@ -1,7 +1,7 @@
 {
   "name": "vscode-font-size-pair-adjuster",
   "displayName": "Font Size Pair Adjuster",
-  "description": "Keep editor and Markdown preview font sizes in sync from the status bar.",
+  "description": "Sync editor and Markdown preview font sizes, with zoom controls for preview diagrams.",
   "version": "0.0.1",
   "publisher": "parin",
   "license": "SEE LICENSE IN LICENSE",
@@ -23,6 +23,8 @@
     "font-size",
     "markdown",
     "preview",
+    "diagram",
+    "zoom",
     "statusbar",
     "accessibility"
   ],
@@ -82,10 +84,16 @@
           "description": "Maximum allowed font size when increasing or setting a value."
         }
       }
-    }
+    },
+    "markdown.previewScripts": [
+      "./media/diagramPreview.js"
+    ],
+    "markdown.previewStyles": [
+      "./media/diagramPreview.css"
+    ]
   },
   "scripts": {
-    "check": "node --check extension.js && node --check fontSizeLogic.js && node --check test/fontSizeLogic.test.js",
+    "check": "node --check extension.js && node --check fontSizeLogic.js && node --check media/diagramPreview.js && node --check test/fontSizeLogic.test.js && node --check test/diagramPreview.test.js",
     "scan:publish": "node scripts/check-publish-readiness.js",
     "vscode:prepublish": "npm run check && npm run scan:publish && npm test",
     "package": "vsce package",

@@ -1,0 +1,150 @@
+.diagram-preview-shell {
+  position: relative;
+  box-sizing: border-box;
+  margin: 16px 0;
+  border: 1px solid var(--vscode-panel-border, rgba(127, 127, 127, 0.32));
+  border-radius: 8px;
+  background: var(--vscode-editor-background);
+  overflow: hidden;
+}
+
+.diagram-preview-toolbar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--vscode-widget-border, rgba(127, 127, 127, 0.35));
+  border-radius: 8px;
+  background: var(--vscode-editorWidget-background, rgba(31, 31, 31, 0.94));
+  color: var(--vscode-editorWidget-foreground, inherit);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.diagram-preview-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font: 600 12px/1 var(--vscode-font-family);
+  cursor: pointer;
+}
+
+.diagram-preview-button:hover {
+  background: var(--vscode-toolbar-hoverBackground, rgba(127, 127, 127, 0.18));
+}
+
+.diagram-preview-button:focus-visible {
+  outline: 1px solid var(--vscode-focusBorder);
+  outline-offset: 2px;
+}
+
+.diagram-preview-button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.diagram-preview-zoom-label {
+  min-width: 46px;
+  padding: 0 6px;
+  color: var(--vscode-descriptionForeground);
+  font: 600 11px/28px var(--vscode-font-family);
+  text-align: center;
+  user-select: none;
+}
+
+.diagram-preview-viewport {
+  box-sizing: border-box;
+  max-height: min(74vh, 920px);
+  min-height: 180px;
+  padding: 48px 16px 16px;
+  overflow: auto;
+  cursor: grab;
+  overscroll-behavior: contain;
+}
+
+.diagram-preview-viewport.is-panning {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.diagram-preview-stage {
+  position: relative;
+  min-width: 1px;
+  min-height: 1px;
+}
+
+.diagram-preview-content {
+  display: inline-block !important;
+  max-width: none !important;
+  transform-origin: 0 0;
+}
+
+.diagram-preview-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: stretch;
+}
+
+.diagram-preview-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.56);
+}
+
+.diagram-preview-modal-panel {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  padding: 18px;
+}
+
+.diagram-preview-shell-modal {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.diagram-preview-shell-modal .diagram-preview-viewport {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  padding: 56px 18px 18px;
+}
+
+@media (max-width: 640px) {
+  .diagram-preview-toolbar {
+    top: 6px;
+    right: 6px;
+    gap: 2px;
+  }
+
+  .diagram-preview-button {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+  }
+
+  .diagram-preview-zoom-label {
+    min-width: 40px;
+    line-height: 26px;
+  }
+
+  .diagram-preview-viewport {
+    padding: 44px 10px 10px;
+  }
+}
